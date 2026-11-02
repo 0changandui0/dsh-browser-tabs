@@ -9,6 +9,10 @@ DSH 的浏览器标签页管家：DSH 专用 Edge（CDP 9227）里的窗口/标�
 - 正在用的、2 分钟内新开的、每个窗口最新的、命中保留正则的页面不动；每个窗口至少留 1 个。
 - 设置页能看当前标签页/窗口数、改阈值、预演一次或立即清理；手动清理默认先预演，不会一按就关。
 
+### What it does (EN)
+
+Keeps the DSH browser's tab count under configurable limits. When the per-window or total limit is exceeded, it closes blank, error, duplicate and oldest pages, while protecting the page in use, tabs opened in the last two minutes, the newest tab per window, keep-pattern URLs, and at least one tab per window. A settings panel provides thresholds, a dry-run preview and manual cleanup. It closes tabs only, not browser windows.
+
 ## 它怎么判断
 
 每隔 `intervalMs`（默认 30 秒）看一眼，但两次真正动手之间至少隔 `cooldownMs`（默认 90 秒）。
@@ -87,7 +91,15 @@ DSH 的浏览器标签页管家：DSH 专用 Edge（CDP 9227）里的窗口/标�
 
 ## 安装 / 卸载
 
-已经通过 profile 的 `package.json`（`link:dsh-browser-tabs`）和 `dsh.profile.bundles` 装进 `desktop` profile。
+从插件市场：设置 → 插件市场，搜「浏览器标签页」或 `dsh-browser-tabs`。
+
+从 GitHub 装：
+
+```bash
+dsh plugin --profile desktop add github:0changandui0/dsh-browser-tabs
+```
+
+装完把 `dsh-browser-tabs` 加进 profile 的 `dsh.profile.bundles`，热重载配置即可；设置页在「设置 → 浏览器标签页」。
 
 临时关掉：把 `cordis.patch.yml` 里的 `enabled` 或 `autoClose` 改成 false，保存即可。
 彻底卸载：从 profile 的 `dsh.profile.bundles` 删掉 `dsh-browser-tabs`，再删掉依赖和这个目录。
