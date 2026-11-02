@@ -1,0 +1,48 @@
+{
+  "name": "dsh-browser-tabs",
+  "version": "0.2.0",
+  "description": "DSH 浏览器窗口/标签页管家：窗口或标签页太多时，自动关掉闲置的、重复的、报错的页面；默认每窗口 8 个、总共 12 个，正在用的和刚开的先留着。",
+  "type": "module",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./policy": "./lib/policy.mjs",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "lib",
+    "docs",
+    "assets",
+    "cordis.patch.yml",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test test/policy.test.mjs test/settings.test.mjs"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "cordis",
+    "browser",
+    "tabs",
+    "cleanup"
+  ],
+  "license": "MIT",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-ui-settings",
+        "@deepseek-ai/dsh-client-ui-settings-plugins"
+      ]
+    }
+  }
+}

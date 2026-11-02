@@ -1,0 +1,31 @@
+# dsh-browser-tabs 的默认配置。改完保存即可热重载，不用重启 DSH。
+# 这一层是“出厂默认”；以后想做 per-profile 覆盖，可以在 profile 的 cordis.patch.yml 里再写一份。
+- insert:
+    - id: dsh-browser-tabs
+      name: 'dsh-browser-tabs'
+      config:
+        enabled: true
+        # false = 只在手动调用 browser_tabs_clean 时才关；定时器仍会看，但不动手
+        autoClose: true
+        cdpUrl: 'http://127.0.0.1:9227'
+        # 每 30 秒看一次；有新标签也至少要等 2 分钟才可能被关
+        intervalMs: 30000
+        startDelayMs: 10000
+        # 两次自动清理之间至少隔 90 秒（巡检本身更频繁，但冷却期内不动手）
+        cooldownMs: 90000
+        # 浏览器服务 120 秒内还有操作，就让路，不跟正在干活的会话抢标签页
+        activeGuardMs: 120000
+        # 上限：单窗口 8 个、全部 12 个
+        maxTabsPerWindow: 8
+        maxTabsTotal: 12
+        # 每轮最多关 3 个，出问题也来得及发现
+        maxClosePerRun: 3
+        # 新标签 2 分钟内不关
+        minAgeMs: 120000
+        keepRecentPerWindow: 1
+        # 总保留：命中这些正则的页面永远不动（默认保留抖音推荐流，免得刷视频时被清掉）
+        keepPatterns:
+          - 'douyin\.com/\?recommend=1'
+        # 窗口合并默认只报告，不自动关窗口（closeExtraWindows=true 才会关多出来的窗口）
+        maxWindows: 3
+        closeExtraWindows: false
