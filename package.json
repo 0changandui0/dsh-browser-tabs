@@ -44,5 +44,14 @@
         "@deepseek-ai/dsh-client-ui-settings-plugins"
       ]
     }
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/0changandui0/dsh-browser-tabs.git"
+  },
+  "homepage": "https://github.com/0changandui0/dsh-browser-tabs#readme",
+  "bugs": {
+    "url": "https://github.com/0changandui0/dsh-browser-tabs/issues"
+  },
+  "author": "0changandui0"
 }
